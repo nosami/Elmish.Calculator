@@ -20,4 +20,7 @@
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
     <PackageReference Include="Elmish.XamarinForms" Version="0.4.2" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="New Folder\" />
+  </ItemGroup>
 </Project>

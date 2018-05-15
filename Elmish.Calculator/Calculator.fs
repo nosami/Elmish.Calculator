@@ -36,7 +36,8 @@ type App() as app =
             Xaml.Button(text = text, command=(fun () -> dispatch command))
                 .GridRow(row)
                 .GridColumn(column)
-                .FontSize("36px")
+                .FontSize(36.0)
+                .ButtonCornerRadius(0)
 
         let mkNumberButton number row column =
             (mkButton (string number) (Digit number) row column)
@@ -52,9 +53,9 @@ type App() as app =
                 .TextColor(Color.Black)
 
         Xaml.ContentPage(
-            Xaml.Grid(rowdefs=[ "2*"; "*"; "*"; "*"; "*"; "*"; "*" ], coldefs=[ "*"; "*"; "*"; "*" ],
+            Xaml.Grid(rowdefs=[ 2.0; "*"; "*"; "*"; "*"; "*"; "*" ], coldefs=[ "*"; "*"; "*"; "*" ],
                 children=[
-                    Xaml.Label(fontSize = "48px", fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center).GridColumnSpan(4)
+                    Xaml.Label(fontSize = 48.0, fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center).GridColumnSpan(4)
                     mkNumberButton 7 1 0; mkNumberButton 8 1 1; mkNumberButton 9 1 2
                     mkNumberButton 4 2 0; mkNumberButton 5 2 1; mkNumberButton 6 2 2
                     mkNumberButton 1 3 0; mkNumberButton 2 3 1; mkNumberButton 3 3 2
