@@ -43,9 +43,12 @@ type App() as app =
                 .BackgroundColor(Color.White)
                 .TextColor(Color.Black)
 
+        let orange = Color.FromRgb(0xff, 0xa5, 0)
+        let gray = Color.FromRgb(0x80, 0x80, 0x80)
+
         let mkOperatorButton text operator row column =
             (mkButton text (Operator operator) row column)
-                .BackgroundColor(Color.FromRgb(0xff, 0xa5, 0))
+                .BackgroundColor(orange)
                 .TextColor(Color.Black)
 
         Xaml.ContentPage(
@@ -60,6 +63,8 @@ type App() as app =
                     mkOperatorButton "×" Multiply 2 3
                     mkOperatorButton "-" Subtract 3 3
                     mkOperatorButton "+" Add 4 3
+                    (mkButton "C" Clear 5 0).BackgroundColor(gray)
+                    (mkButton "=" Equals 5 1).BackgroundColor(orange).GridColumnSpan(3)
                 ]
             )
         )
