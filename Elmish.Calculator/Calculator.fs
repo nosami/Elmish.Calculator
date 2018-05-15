@@ -8,14 +8,14 @@ open Elmish.XamarinForms.DynamicViews
 open Elmish.XamarinForms.DynamicViews.SimplerHelpers
 open Xamarin.Forms
 
-type Operator = | Add | Subtract | Multiply | Divide 
+type Operator = Add | Subtract | Multiply | Divide 
 
 type Model =
     { operand1: double
       operand2: double
       operator: Operator option }
 
-/// Represents a calculator button
+/// Represents a calculator button press
 type Msg =
     | Operator of Operator
     | Digit of int
@@ -32,22 +32,34 @@ type App() as app =
         | _ -> model
 
     let view model dispatch =
-        let mkNumberButton number row column =
-            Xaml.Button(text = string number, command=(fun () -> dispatch (Digit number)))
+        let mkButton text command row column =
+            Xaml.Button(text = text, command=(fun () -> dispatch command))
                 .GridRow(row)
                 .GridColumn(column)
+                .FontSize("36px")
+
+        let mkNumberButton number row column =
+            (mkButton (string number) (Digit number) row column)
                 .BackgroundColor(Color.White)
                 .TextColor(Color.Black)
-                .FontSize("36px")
+
+        let mkOperatorButton text operator row column =
+            (mkButton text (Operator operator) row column)
+                .BackgroundColor(Color.FromRgb(0xff, 0xa5, 0))
+                .TextColor(Color.Black)
 
         Xaml.ContentPage(
             Xaml.Grid(rowdefs=[ "2*"; "*"; "*"; "*"; "*"; "*"; "*" ], coldefs=[ "*"; "*"; "*"; "*" ],
                 children=[
-                    Xaml.Label(fontSize = "48px", fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center, gridColumnSpan = 4)
+                    Xaml.Label(fontSize = "48px", fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center).GridColumnSpan(4)
                     mkNumberButton 7 1 0; mkNumberButton 8 1 1; mkNumberButton 9 1 2
                     mkNumberButton 4 2 0; mkNumberButton 5 2 1; mkNumberButton 6 2 2
                     mkNumberButton 1 3 0; mkNumberButton 2 3 1; mkNumberButton 3 3 2
                     (mkNumberButton 0 4 0).GridColumnSpan(3)
+                    mkOperatorButton "÷" Divide 1 3
+                    mkOperatorButton "×" Multiply 2 3
+                    mkOperatorButton "-" Subtract 3 3
+                    mkOperatorButton "+" Add 4 3
                 ]
             )
         )
