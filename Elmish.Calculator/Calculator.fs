@@ -78,7 +78,7 @@ type App() as app =
                 .GridRow(row)
                 .GridColumn(column)
                 .FontSize(36.0)
-                .ButtonCornerRadius(0)
+                //.ButtonCornerRadius(0)
 
         let mkNumberButton number row column =
             (mkButton (string number) (Digit number) row column)
@@ -107,7 +107,7 @@ type App() as app =
                     mkOperatorButton "+" Add 4 3
                     (mkButton "C" Clear 5 0).BackgroundColor(gray).TextColor(Color.White)
                     (mkButton "=" Equals 5 1).BackgroundColor(orange).GridColumnSpan(3).TextColor(Color.White)
-                ], rowSpacing = 1.0, columnSpacing = 1.0
+                ], rowSpacing = 1.0, columnSpacing = 1.0, backgroundColor = gray
             )
         )
 
