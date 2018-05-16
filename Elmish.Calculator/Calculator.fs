@@ -94,7 +94,7 @@ type App() as app =
                 .TextColor(Color.Black)
 
         Xaml.ContentPage(
-            Xaml.Grid(rowdefs=[ "*"; "*"; "*"; "*"; "*"; "*"; "*" ], coldefs=[ "*"; "*"; "*"; "*" ],
+            Xaml.Grid(rowdefs=[ "*"; "*"; "*"; "*"; "*"; "*" ], coldefs=[ "*"; "*"; "*"; "*" ],
                 children=[
                     Xaml.Label(text = string model, fontSize = 48.0, fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center).GridColumnSpan(4)
                     mkNumberButton 7 1 0; mkNumberButton 8 1 1; mkNumberButton 9 1 2
