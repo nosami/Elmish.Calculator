@@ -114,6 +114,4 @@ type App() as app =
     let runner = 
         Program.mkSimple (fun() -> Initial) update view
         |> Program.withConsoleTrace
-        |> Program.withDynamicView app
-        |> Program.run
-        
+        |> Program.runWithDynamicView app
