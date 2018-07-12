@@ -104,7 +104,8 @@ module App =
                     mkOperatorButton "-" Subtract 3 3
                     mkOperatorButton "+" Add 4 3
                     (mkButton "C" Clear 5 0).BackgroundColor(gray).TextColor(Color.White)
-                    (mkButton "=" Equals 5 1).BackgroundColor(orange).GridColumnSpan(3).TextColor(Color.White)
+                    mkOperatorButton "+" Add 5 2
+                    (mkButton "+" Equals 5 1).BackgroundColor(orange).GridColumnSpan(2).TextColor(Color.White)
                 ], rowSpacing = 1.0, columnSpacing = 1.0, backgroundColor = gray
             )
         )
