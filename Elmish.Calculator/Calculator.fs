@@ -25,17 +25,8 @@ type State =
     | Result of double // 2
     | Error
 
-    override this.ToString() =
-        match this with
-        | Initial -> "0"
-        | Operand op | OperandOperator (op, _) | OperandOperatorOperand (_, _, op) -> string op
-        | Result res -> string res
-        | Error -> "Error"
-
-type App() as app =
-    inherit Application()
-
-    let calculate op1 op2 operator =
+module App =
+    let calculateOperation op1 op2 operator =
         match operator with
         | Add -> op1 + op2
         | Subtract -> op1 - op2
@@ -46,7 +37,7 @@ type App() as app =
         match model with
         | OperandOperatorOperand (_, Divide, 0.0) -> Error
         | OperandOperatorOperand (op1, operator, op2) ->
-            let res = calculate op1 op2 operator
+            let res = calculateOperation op1 op2 operator
             match msg with
             | Equals -> Result(res)
             | Operator operator ->
@@ -72,6 +63,13 @@ type App() as app =
             | OperandOperatorOperand _ -> calculate model msg
         | Equals -> calculate model msg
 
+    let display model =
+        match model with
+        | Initial -> "0"
+        | Operand op | OperandOperator (op, _) | OperandOperatorOperand (_, _, op) -> string op
+        | Result res -> string res
+        | Error -> "Error"
+
     let view (model: State) dispatch =
         let mkButton text command row column =
             Xaml.Button(text = text, command=(fun () -> dispatch command))
@@ -96,7 +94,7 @@ type App() as app =
         Xaml.ContentPage(
             Xaml.Grid(rowdefs=[ "*"; "*"; "*"; "*"; "*"; "*" ], coldefs=[ "*"; "*"; "*"; "*" ],
                 children=[
-                    Xaml.Label(text = string model, fontSize = 48.0, fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center).GridColumnSpan(4)
+                    Xaml.Label(text = display model, fontSize = 48.0, fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center).GridColumnSpan(4)
                     mkNumberButton 7 1 0; mkNumberButton 8 1 1; mkNumberButton 9 1 2
                     mkNumberButton 4 2 0; mkNumberButton 5 2 1; mkNumberButton 6 2 2
                     mkNumberButton 1 3 0; mkNumberButton 2 3 1; mkNumberButton 3 3 2
@@ -111,7 +109,15 @@ type App() as app =
             )
         )
 
-    let runner = 
+    let program = 
         Program.mkSimple (fun() -> Initial) update view
         |> Program.withConsoleTrace
-        |> Program.runWithDynamicView app
+
+type App() as app =
+    inherit Application()
+
+    let runner = App.program |> Program.runWithDynamicView app
+
+    #if DEBUG
+    do runner.EnableLiveUpdate ()
+    #endif
