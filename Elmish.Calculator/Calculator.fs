@@ -72,7 +72,7 @@ module App =
 
     let view (model: State) dispatch =
         let mkButton text command row column =
-            Xaml.Button(text = text, command=(fun () -> dispatch command))
+            View.Button(text = text, command=(fun () -> dispatch command))
                 .GridRow(row)
                 .GridColumn(column)
                 .FontSize(36.0)
@@ -91,10 +91,10 @@ module App =
                 .BackgroundColor(orange)
                 .TextColor(Color.Black)
 
-        Xaml.ContentPage(
-            Xaml.Grid(rowdefs=[ "*"; "*"; "*"; "*"; "*"; "*" ], coldefs=[ "*"; "*"; "*"; "*" ],
+        View.ContentPage(
+            View.Grid(rowdefs=[ "*"; "*"; "*"; "*"; "*"; "*" ], coldefs=[ "*"; "*"; "*"; "*" ],
                 children=[
-                    Xaml.Label(text = display model, fontSize = 48.0, fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center).GridColumnSpan(4)
+                    View.Label(text = display model, fontSize = 48.0, fontAttributes = FontAttributes.Bold, backgroundColor = Color.Black, textColor = Color.White, horizontalTextAlignment = TextAlignment.End, verticalTextAlignment = TextAlignment.Center).GridColumnSpan(4)
                     mkNumberButton 7 1 0; mkNumberButton 8 1 1; mkNumberButton 9 1 2
                     mkNumberButton 4 2 0; mkNumberButton 5 2 1; mkNumberButton 6 2 2
                     mkNumberButton 1 3 0; mkNumberButton 2 3 1; mkNumberButton 3 3 2
@@ -103,9 +103,9 @@ module App =
                     mkOperatorButton "×" Multiply 2 3
                     mkOperatorButton "-" Subtract 3 3
                     mkOperatorButton "+" Add 4 3
-                    (mkButton "C" Clear 5 0).BackgroundColor(gray).TextColor(Color.White)
-                    mkOperatorButton "+" Add 5 2
-                    (mkButton "+" Equals 5 1).BackgroundColor(orange).GridColumnSpan(2).TextColor(Color.White)
+                    (mkButton "A" Clear 5 0).BackgroundColor(gray).TextColor(Color.White)
+                    (mkButton "." Equals 5 1).BackgroundColor(orange).TextColor(Color.Black)
+                    (mkButton "=" Equals 5 2).BackgroundColor(orange).GridColumnSpan(2).TextColor(Color.White)
                 ], rowSpacing = 1.0, columnSpacing = 1.0, backgroundColor = gray
             )
         )
