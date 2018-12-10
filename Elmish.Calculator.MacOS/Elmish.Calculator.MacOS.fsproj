@@ -51,18 +51,9 @@
     <Reference Include="Xamarin.Mac" />
     <Reference Include="mscorlib" />
     <Reference Include="System.Numerics" />
-    <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.5.0\lib\netstandard1.6\FSharp.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="FsPickler">
-      <HintPath>..\packages\FsPickler.5.2\lib\netstandard2.0\FsPickler.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
-    <Reference Include="FsPickler.Json">
-      <HintPath>..\packages\FsPickler.Json.5.2\lib\netstandard2.0\FsPickler.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -78,11 +69,17 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.3.1.0.637273\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="Elmish.XamarinForms">
-      <HintPath>..\packages\Elmish.XamarinForms.0.14.4\lib\netstandard2.0\Elmish.XamarinForms.dll</HintPath>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.5.2\lib\netstandard1.6\FSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Elmish.XamarinForms.LiveUpdate">
-      <HintPath>..\packages\Elmish.XamarinForms.LiveUpdate.0.14.4\lib\netstandard2.0\Elmish.XamarinForms.LiveUpdate.dll</HintPath>
+    <Reference Include="Fabulous.CustomControls">
+      <HintPath>..\packages\Fabulous.CustomControls.0.28.0\lib\netstandard2.0\Fabulous.CustomControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Fabulous.Core">
+      <HintPath>..\packages\Fabulous.Core.0.28.0\lib\netstandard2.0\Fabulous.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fabulous.LiveUpdate">
+      <HintPath>..\packages\Fabulous.LiveUpdate.0.28.0\lib\netstandard2.0\Fabulous.LiveUpdate.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

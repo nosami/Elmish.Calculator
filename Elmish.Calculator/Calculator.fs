@@ -1,7 +1,7 @@
 ﻿namespace Elmish.Calculator
 
-open Elmish.XamarinForms
-open Elmish.XamarinForms.DynamicViews
+open Fabulous.Core
+open Fabulous.DynamicViews
 open Xamarin.Forms
 
 type Operator = Add | Subtract | Multiply | Divide 
@@ -103,9 +103,8 @@ module App =
                     mkOperatorButton "×" Multiply 2 3
                     mkOperatorButton "-" Subtract 3 3
                     mkOperatorButton "+" Add 4 3
-                    (mkButton "A" Clear 5 0).BackgroundColor(gray).TextColor(Color.White)
-                    (mkButton "." Equals 5 1).BackgroundColor(orange).TextColor(Color.Black)
-                    (mkButton "=" Equals 5 2).BackgroundColor(orange).GridColumnSpan(2).TextColor(Color.White)
+                    (mkButton "C" Clear 5 0).BackgroundColor(gray).TextColor(Color.Black)
+                    (mkButton "=" Equals 5 1).BackgroundColor(orange).GridColumnSpan(3).TextColor(Color.White)
                 ], rowSpacing = 1.0, columnSpacing = 1.0, backgroundColor = gray
             )
         )
